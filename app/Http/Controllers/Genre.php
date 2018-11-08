@@ -16,6 +16,6 @@ class Genre extends Controller
   public function deleteOne(Request $request)
   {
     \App\Genre::destroy($request->input('id'));
-    return redirect('/listeseries');
+    return redirect('/listseries');
   }
 }

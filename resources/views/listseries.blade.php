@@ -33,11 +33,6 @@
                 <input type="hidden" name="id" value="{{ $actor->id}}">
                 <input type="submit" name="" value="X">
               </form>
-              <form class="" action="/updateactor" method="post">
-                @csrf
-                <input type="hidden" name="id" value="{{ $actor->id }}">
-                <input type="submit" name="" value="U">
-              </form>
             @endforeach
           </td>
           <td>
@@ -47,11 +42,6 @@
                 @csrf
                 <input type="hidden" name="id" value="{{ $genre->id}}">
                 <input type="submit" name="" value="X">
-              </form>
-              <form class="" action="/updategenre" method="post">
-                @csrf
-                <input type="hidden" name="id" value="{{ $genre->id }}">
-                <input type="submit" name="" value="U">
               </form>
             @endforeach
           </td>

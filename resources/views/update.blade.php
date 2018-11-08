@@ -23,40 +23,38 @@
     <input required type="number" name="publication_year" value="{{ $serie->publication_year }}">
 
     <label for="">Acteurs existants : </label>
-    <select class="" name="actors">
+    <select multiple class="" name="actors[]">
       <option value="" selected></option>
         @foreach ($actors as $actor)
-          @if ($actor->id  === $serie->actors[0]->id)
-            <option selected value="{{ $actor->id }}">
-              {{ $actor->completeName()}}
-            </option>
+            <option value="{{ $actor->id }}"
+                @foreach ($serie->actors as $serieActor)
+                  @if ($serieActor->id  === $actor->id)
+                    selected
+                  @endif
+                  @endforeach
+              >{{ $actor->completeName()}}</option>
+              @endforeach
         {{-- TERNARY <option @php $actor->id === $serie->actors[0]->id ? 'select' : '';@endphp value="{{ $actor->id }}">{{ $actor->completeName()}}
-      </option>--}}
-          @else
-            <option value="{{ $actor->id }}">
-              {{ $actor->completeName()}}
-            </option>
-          @endif
-        @endforeach
+        </option>--}}
     </select>
     <label for="">Modifier le nom de l'acteur :</label>
-    <input type="text" name="updatename" value="{{ $actor->id }}" placeholder="">
+    <input type="text" name="updatename" value="" placeholder="">
 
     <label for="">Genres existants : </label>
-    <select class="" name="genres">
+    <select multiple class="" name="genres[]">
       <option value="" selected></option>
-      @foreach ($genres as $genre)
-        @if ($genre->id  === $serie->genres[0]->id)
-          <option selected value="{{ $genre->id }}">
-            {{ $genre->name }}
-          </option>
-      @else
-          <option value="{{ $genre->id }}">
-            {{ $genre->name }}
-          </option>
-      @endif
-      @endforeach
+        @foreach ($genres as $genre)
+            <option value="{{ $genre->id }}"
+                @foreach ($serie->genres as $serieGenre)
+                  @if ($serieGenre->id  === $genre->id)
+                    selected
+                  @endif
+                  @endforeach
+              >{{ $genre->name }}</option>
+              @endforeach
     </select>
+    <label for="">Modifier le nom du genre :</label>
+    <input type="text" name="updategenre" value="" placeholder="">
 
     <input type="submit" name="" value="Modifier">
   </form>

@@ -21,7 +21,7 @@
     <input required type="number" name="publication_year" value="" placeholder="ex:2015">
 
     <label for="">Acteurs existants : </label>
-    <select class="" name="actors">
+    <select multiple class="" name="actors[]">
       <option value="" selected></option>
         @foreach ($actors as $actor)
           <option value="{{ $actor->id }}">
@@ -34,7 +34,7 @@
     <input type="text" name="newname" value="" placeholder="ex:Pitt ">
 
     <label for="">Genres existants : </label>
-    <select class="" name="genres">
+    <select multiple class="" name="genres[]">
       <option value="" selected></option>
       @foreach ($genres as $genre)
         <option value="{{ $genre->id }}">

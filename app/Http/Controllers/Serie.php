@@ -51,17 +51,38 @@ class Serie extends Controller
      $serie->save();
      $serie->actors()->detach();
      $serie->genres()->detach();
-        if ($request->input('actors') == "") {
-          $actor = \App\Actor::find($request->input('id'));
+        if ($request->input('actors') == null) {
+          $actor = new \App\Actor;
           $actor->name = $request->input('updatename');
           $actor->surname = "";
           $actor->save();
-        }else{
-          $serie->actors()->attach($request->input('actors'));
+          $serie->actors()->attach($actor);
+        } elseif($request->input('actors') !== null) {
+            if ($request->input('updatename') !== null) {
+              $actor = \App\Actor::find($request->input('actors'));
+              $actor->name = $request->input('updatename');
+              $actor->surname = "";
+              $actor->save();
+              $serie->actors()->attach($actor);
+            }else {
+                $serie->actors()->attach($request->input('actors'));
+            }
         }
-
-
-     $serie->genres()->attach($request->input('genres'));
+        if ($request->input('genres') == null) {
+          $genre = new \App\Genre;
+          $genre->name = $request->input('updategenre');
+          $genre->save();
+          $serie->genres()->attach($genre);
+        } elseif($request->input('genres') !== null) {
+            if ($request->input('updategenre') !== null) {
+              $genre = \App\Genre::find($request->input('genres'));
+              $genre->name = $request->input('updategenre');
+              $genre->save();
+              $serie->genres()->attach($genre);
+            }else {
+                $serie->genres()->attach($request->input('genres'));
+            }
+        }
      return redirect('/listseries');
    }
 }

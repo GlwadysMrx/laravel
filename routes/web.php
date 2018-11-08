@@ -17,8 +17,7 @@ Route::get('/addseries','View@addseries');
 Route::get('/addactors','View@addactors');
 Route::get('/addgenres','View@addgenres');
 Route::post('/updateserie','View@updateForm');
-Route::post('/updateactor','View@updateForm');
-Route::post('/updategenre','View@updateForm');
+
 
 Route::post('/insertserie','Serie@insertOne');
 Route::post('/insertactor','Actor@insertOne');
